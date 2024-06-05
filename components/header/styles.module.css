@@ -1,0 +1,25 @@
+.header{
+    background-color: #222;
+    
+}
+.header-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -1px;
+    color: #fff;
+}
+.nav{
+    display: flex;
+    gap: 48px;
+    color: #fafafa;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
