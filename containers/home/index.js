@@ -3,11 +3,11 @@ import FeaturedMovie from "@/components/featured-movies";
 import MoviesSection from "@/components/movies-section";
 import React from "react";
 
-const HomeContainer = () => {
+const HomeContainer = ({selectedCategory,popularMovies=[]}) => {
   return (
     <>
-      <FeaturedMovie />
-      <Categories />
+      <FeaturedMovie movie={popularMovies[0]} />
+      <Categories categories={popularMovies} />
       <MoviesSection/>
     </>
   );

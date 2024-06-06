@@ -1,5 +1,5 @@
 import React from "react";
-import MoviesContainer from "@/containers/home/movies";
+import MoviesContainer from "@/containers/movies";
 import { notFound } from "next/navigation";
 const MoviePage = ({ params, searchParams }) => {
   const movieDetail = params.id;

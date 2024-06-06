@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from "../skeleton";
-
+import styles from './styles.module.css'
 const CategoriesLoading = () => {
   return (
     <div className={styles.categories}>
