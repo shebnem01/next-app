@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import styles from "./styles.module.css";
 
-const Skeleton = ({height}) => {
-  return (
-    <div>Skeleton</div>
-  )
+function Skeleton({ width, height }) {
+  return <div className={styles.skeleton} style={{ width, height }}></div>;
 }
 
-export default Skeleton
+export { Skeleton };

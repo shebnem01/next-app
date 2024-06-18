@@ -1,11 +1,14 @@
-import React from 'react'
-import Loading from '../loading'
+import React from "react";
+import { Loading } from "@/components/loading";
 
-const FeaturedMovieLoading = () => {
+import styles from "./styles.module.css";
+
+function FeatureMovieLoading() {
   return (
-    <Loading/>
-  )
+    <div style={{ height: 278 }} className={styles.movieWrapper}>
+      <Loading />
+    </div>
+  );
 }
 
-export default FeaturedMovieLoading
-// 
+export { FeatureMovieLoading };

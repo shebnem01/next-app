@@ -1,16 +1,21 @@
-import React from "react";
-import MoviesContainer from "@/containers/movies";
 import { notFound } from "next/navigation";
-const MoviePage = ({ params, searchParams }) => {
-  const Movies=[];
-  const movieDetail = Movies.results.find(movie=>movie.id.toString()==params.id)
-  if (!movieDetail) {
+import React from "react";
+import { MovieContainer } from "@/containers/movie";
+
+import { fetchSingleMovie } from "@/services/movie";
+
+async function MoviePage({ params, searchParams }) {
+  const movieDetail = await fetchSingleMovie(params.id);
+
+  if (movieDetail.success === false) {
     notFound();
   }
+
   if (searchParams.error === "true") {
-    throw new Error("error happened");
+    throw new Error("Something went wrong!");
   }
-  return <MoviesContainer movie={movieDetail} />;
-};
+
+  return <MovieContainer movie={movieDetail} />;
+}
 
 export default MoviePage;

@@ -1,7 +1,8 @@
 import React from "react";
-import Skeleton from "../skeleton";
-import styles from './styles.module.css'
-const CategoriesLoading = () => {
+import { Skeleton } from "@/components/skeleton";
+import styles from "./styles.module.css";
+
+function CategoriesLoading() {
   return (
     <div className={styles.categories}>
       {Array(5)
@@ -11,6 +12,6 @@ const CategoriesLoading = () => {
         ))}
     </div>
   );
-};
+}
 
-export default CategoriesLoading;
+export { CategoriesLoading };

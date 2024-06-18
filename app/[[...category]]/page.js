@@ -1,26 +1,38 @@
-import HomeContainer from "@/containers/home";
-const API_URL = "https://api.themoviedb.org/3";
-const getPopularMovies = async () => {
-  const res = await fetch(
-    `${API_URL}//movie/top_rated?api_key=${process.env.API_KEY}&page=1`
-  );
-  return res.json();
-};
+import React from "react";
+import { HomeContainer } from "@/containers/home";
+
+import {
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchGenres,
+  fetchMoviesByGenre,
+} from "@/services/movie";
+
 async function HomePage({ params }) {
-  let selectedCategory;
-  const { results: popularMovies } = await getPopularMovies();
-  console.log("Ewewew", popularMovies);
-  if (params.category?.length > 0) {
-    selectedCategory = true;
+  const pagePromises = [
+    fetchPopularMovies(),
+    fetchTopRatedMovies(),
+    fetchGenres(),
+  ];
+
+  if (!!params.category?.length) {
+    pagePromises.push(fetchMoviesByGenre(params.category[0]));
   }
+
+  const [popularMovies, topRatedMovies, genres, selectedCategoryMovies] =
+    await Promise.all(pagePromises);
+
   return (
     <HomeContainer
-      selectedCategory={{ 
-        id: params.category?.[0] ?? "",
-        movies: selectedCategory ? popularMovies.slice(0, 7) : [],
-      }}
+      categories={genres}
       popularMovies={popularMovies}
+      topRatedMovies={topRatedMovies}
+      selectedCategory={{
+        id: params.category?.[0] ?? "",
+        movies: selectedCategoryMovies ?? [],
+      }}
     />
   );
 }
+
 export default HomePage;

@@ -1,20 +1,34 @@
-import Categories from "@/components/categories";
-import FeaturedMovie from "@/components/featured-movies";
-import MoviesSection from "@/components/movies-section";
 import React from "react";
 
-const HomeContainer = ({ selectedCategory, popularMovies = [] }) => {
-  return (
-    <>
-      <FeaturedMovie movie={popularMovies[0]} />
-      <Categories categories={popularMovies} />
-      {selectedCategory.length > 0 && (
-        <MoviesSection title="Popular films" movies={selectedCategory.movies} />
-      )}
-      <MoviesSection title="Popular films" />
-      <MoviesSection title="Your favorites" />
-    </>
-  );
-};
+import { FeaturedMovie } from "@/components/featured-movie";
+import { Categories } from "@/components/categories";
+import { MoviesSection } from "@/components/movies-section";
 
-export default HomeContainer;
+function HomeContainer({
+  popularMovies,
+  topRatedMovies,
+  categories,
+  selectedCategory,
+}) {
+  return (
+    <div>
+      <FeaturedMovie
+        movie={popularMovies[Math.floor(Math.random() * popularMovies.length)]}
+      />
+      <Categories categories={categories.slice(1, 6)} />
+      {!!selectedCategory.movies.length && (
+        <MoviesSection
+          title={categories.find(({ id }) => id === +selectedCategory.id)?.name}
+          movies={selectedCategory.movies.slice(1, 7)}
+        />
+      )}
+      <MoviesSection title="Popular Films" movies={popularMovies.slice(1, 7)} />
+      <MoviesSection
+        title="Your favorites"
+        movies={topRatedMovies.slice(1, 7)}
+      />
+    </div>
+  );
+}
+
+export { HomeContainer };
