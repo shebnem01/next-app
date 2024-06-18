@@ -3,7 +3,7 @@ import React from 'react'
 
 const MovieNotFound = () => {
   return (
-    <div><Link href='/'>Go home</Link></div>
+    <div>not found<Link href='/'>Go home</Link></div>
   )
 }
 
